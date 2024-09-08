@@ -23,14 +23,14 @@ function FaceSignUp() {
       try {
 
       
-       const response = await axios.post(`${api}/retrievedata`, formdata);
+       const response = await axios.post(`${api}/retrievedata`, formdata, 
         
-      //  {
-      //     headers: {
-      //       'Content-Type':'multipart.form-data',
-      //     },
+       {
+          headers: {
+            'Content-Type':'multipart.form-data',
+          },
         
-      //  })
+       });
        console.log(response.data);
        document.getElementById('response').innerText = JSON.stringify(response.data);
     } 
