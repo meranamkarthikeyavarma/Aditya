@@ -19,17 +19,25 @@ function FaceSignUp() {
         formdata.append('branch', branch);
         formdata.append('year', year);
         formdata.append('image', image);
-       const response = await axios.post(`${api}/retrievedata`, formdata,
+
+      try {
+
+      
+       const response = await axios.post(`${api}/retrievedata`, formdata);
         
-       {
-          headers: {
-            'Content-Type':'multipart.form-data',
-          },
+      //  {
+      //     headers: {
+      //       'Content-Type':'multipart.form-data',
+      //     },
         
-       })
+      //  })
        console.log(response.data);
-       document.getElementById('response').innerText = response;
-    }   
+       document.getElementById('response').innerText = JSON.stringify(response.data);
+    } 
+   catch (error) {
+    console.error('Error submitting data:', error);
+
+  }  
 
 
     const uploadImage = (event) => {
@@ -110,6 +118,7 @@ function FaceSignUp() {
       </Box>
     </Flex>
   );
+}
 }
 
 export default FaceSignUp;
