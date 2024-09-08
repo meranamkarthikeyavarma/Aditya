@@ -7,6 +7,7 @@ import io
 from PIL import Image
 from flask_cors import CORS
 from scipy.spatial.distance import cosine
+import os
 
 
 app = Flask(__name__)
@@ -61,4 +62,4 @@ except Exception as e:
     print(e)
 
 if __name__ == "__main__":
-    app.run(debug = True, port = 5000)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
