@@ -19,7 +19,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['facerecognition']
 collection = db['student']
 
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://facialrecognition-xp94.onrender.com"}})
+
 
 @app.route('/retrievedata', methods=['POST'])
 def retrievedata():
