@@ -19,7 +19,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['facerecognition']
 collection = db['student']
 
-CORS(app, resources={r"/*": {"origins": "https://facialrecognition-xp94.onrender.com"}})
+CORS(app, origins=["https://facialrecognition-xp94.onrender.com"])
+
 
 
 @app.route('/retrievedata', methods=['POST'])
@@ -62,5 +63,7 @@ try:
 except Exception as e:
     print(e)
 
+    # host='0.0.0.0', port=int(os.environ.get('PORT', 10000))
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+    app.run(debug =True, port=5000)
