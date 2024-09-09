@@ -19,7 +19,7 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['facerecognition']
 collection = db['student']
 
-CORS(app, origins=["https://facialrecognition-xp94.onrender.com"])
+CORS(app)
 
 
 
