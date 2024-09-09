@@ -29,7 +29,7 @@ function FaceSignUp() {
         
        });
        console.log(response.data);
-       document.getElementById('response').innerText = JSON.stringify(response.data);
+       document.getElementById('response').innerText = response.data;
     } 
   
 
