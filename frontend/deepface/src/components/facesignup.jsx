@@ -75,6 +75,7 @@ function FaceSignUp() {
             <option value='option7'>IT</option>
             <option value='option8'>EEE</option>
             <option value='option9'>MECH</option>
+            <option value = 'seeta'>seeta</option>
 
         </Select>
         </FormControl>
