@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, FormLabel, Input, Box, Flex, Heading, Button, Select } from '@chakra-ui/react';
 import axios from 'axios';
-// https://facialrecognitionflask.onrender.com
-const api =  "https://facialrecognitionflask.onrender.com";
+const api =  "http://localhost:5000";
 
 function FaceSignUp() {
 
