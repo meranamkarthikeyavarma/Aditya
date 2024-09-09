@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, FormLabel, Input, Box, Flex, Heading, Button, Select } from '@chakra-ui/react';
 import axios from 'axios';
-const api = 'https://facialrecognitionflask.onrender.com'
+const api = "https://localhost:5000"
 
 function FaceSignUp() {
 
@@ -19,9 +19,6 @@ function FaceSignUp() {
         formdata.append('branch', branch);
         formdata.append('year', year);
         formdata.append('image', image);
-
-      try {
-
       
        const response = await axios.post(`${api}/retrievedata`, formdata, 
         
@@ -34,10 +31,7 @@ function FaceSignUp() {
        console.log(response.data);
        document.getElementById('response').innerText = JSON.stringify(response.data);
     } 
-   catch (error) {
-    console.error('Error submitting data:', error);
-
-  }  
+  
 
 
     const uploadImage = (event) => {
@@ -47,6 +41,7 @@ function FaceSignUp() {
     
 
   return (
+  
     <Flex
       height="100vh"
       align="center"
@@ -114,11 +109,13 @@ function FaceSignUp() {
             Submit
         </Button>
         <p id = 'response'></p>
+        
 
       </Box>
     </Flex>
+    
   );
 }
-}
+
 
 export default FaceSignUp;
