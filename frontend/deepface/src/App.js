@@ -1,15 +1,22 @@
 import React from 'react';
-// import CameraFeed from './components/camerafeed';
-// import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import FaceSignUp from './components/facesignup';
+import CameraFeed from './components/facelogin';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+
 
 
 function App() {
     return (
         <div>
             <ChakraProvider>
-           <FaceSignUp/>
+                <BrowserRouter>
+                <Routes>
+                    <Route path = '/' element = {<CameraFeed/>} />
+                    <Route path = '/signup' element = {<FaceSignUp/>} />
+                </Routes>
+                </BrowserRouter>
             </ChakraProvider>
         
         </div>

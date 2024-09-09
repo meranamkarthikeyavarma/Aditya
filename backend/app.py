@@ -19,8 +19,16 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['facerecognition']
 collection = db['student']
 
-CORS(app)
+studentembedds = {}
 
+for doc in collection.find({}, {'embeddings': 1, 'name': 1, '_id': 0}):
+    studentembedds[doc['name']] = doc['embeddings'][0]
+
+
+
+
+
+CORS(app)
 
 
 @app.route('/retrievedata', methods=['POST'])
@@ -48,6 +56,7 @@ def retrievedata():
         embedding_vector = embeddings[0]['embedding']
         collection.insert_one({'name':name, 'redg':redg, 'branch' : branch, 'year':year, 'embeddings':[embedding_vector]})
         print('all flags success')
+        
 
         return jsonify({'message': 'Registration Successful'}), 200
     
@@ -56,6 +65,41 @@ def retrievedata():
         return jsonify({'error': 'Failed to process the image'}), 500
     
     return jsonify({'message':'seeta'})
+
+
+@app.route('/verify', methods = ['POST'])
+def verify():
+    blob = request.files['image']
+    print('blob in flask')
+    
+    image = Image.open(blob)
+    if image.mode == 'RGBA':
+        image = image.convert('RGB')
+    image_array = np.array(image)  
+    print('Image converted to numpy array')
+
+    embeddings = DeepFace.represent(img_path=image_array, model_name="Facenet")
+    embedding_vector = embeddings[0]['embedding']
+
+    embedding_vector = np.array(embedding_vector)
+
+    
+    print(studentembedds)
+    print('embeddings success')
+
+    previousres = -2
+
+    for i in studentembedds:
+            cosine_similarity = 1 - cosine(studentembedds[i], embedding_vector)
+            if cosine_similarity > previousres : 
+                 student = i
+                 previousres = cosine_similarity
+
+
+    print(student)
+    
+    return jsonify({'message':student})
+
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
