@@ -35,8 +35,10 @@ function FaceSignUp() {
 
        if (response && response.data)
             document.getElementById('response').innerText = response.data.message
-
-       navigate('/');
+       setTimeout(() => {
+        navigate('/');
+       }, 500);
+       
     } 
   
 
