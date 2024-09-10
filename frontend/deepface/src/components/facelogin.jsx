@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { Heading, Button, Stack } from '@chakra-ui/react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {
+  Alert,
+  AlertIcon,
+  
+} from '@chakra-ui/react'
 
 
 const api = 'http://localhost:5000';
@@ -47,7 +52,12 @@ const CameraFeed = () => {
         },
       });
       console.log('Image sent successfully');
-      document.getElementById('studentname').innerText = response.data.message;
+      // document.getElementById('studentname').innerText = response.data.message;
+      const res = response.data.message;
+      <Alert status='success' variant='solid'>
+      <AlertIcon />
+          {res}
+      </Alert>
     } catch (error) {
       console.error('Error sending image:', error);
     }
@@ -74,6 +84,23 @@ const CameraFeed = () => {
   return (
     <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', textAlign: 'center' }}>
       {/* Top Right Sign Up Button */}
+      <Heading
+        as="h1"
+        size="xl"
+        sx={{
+          position: 'absolute',
+          top: '20px',
+          left: '45%',
+          transform: 'translateX(-50%)',
+          background: 'radial-gradient(circle, #ff6f61, #d85a9b, #6a11cb, #d64f4f)',
+          backgroundSize: '400% 400%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          animation: 'gradientBackground 10s ease infinite',
+        }}
+      >
+        AST ATTENDENCE
+      </Heading>
       <Button 
       colorScheme="teal" 
       variant="solid" 
@@ -84,9 +111,7 @@ const CameraFeed = () => {
       </Link>
     </Button>
 
-      <Heading as="h2" size="lg" mb={6}>
-        VisionGuard Attendance System
-      </Heading>
+      
 
       <div style={{ marginBottom: '20px' }}>
         <video ref={videoRef} style={{ width: '100%', maxWidth: '600px', border: '1px solid #ccc', borderRadius: '8px' }} autoPlay />
@@ -100,7 +125,7 @@ const CameraFeed = () => {
         </Button>
       </Stack>
 
-      <p id="studentname"></p>
+      {/* <p id="studentname"></p> */}
     </div>
   );
 };

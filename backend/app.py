@@ -19,10 +19,7 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['facerecognition']
 collection = db['student']
 
-studentembedds = {}
 
-for doc in collection.find({}, {'embeddings': 1, 'name': 1, '_id': 0}):
-    studentembedds[doc['name']] = doc['embeddings'][0]
 
 CORS(app)
 
@@ -66,6 +63,12 @@ def retrievedata():
 
 @app.route('/verify', methods = ['POST'])
 def verify():
+
+    studentembedds = {}
+
+    for doc in collection.find({}, {'embeddings': 1, 'name': 1, '_id': 0}):
+         studentembedds[doc['name']] = doc['embeddings'][0]
+
     blob = request.files['image']
     print('blob in flask')
     
@@ -88,14 +91,18 @@ def verify():
 
     for i in studentembedds:
             cosine_similarity = 1 - cosine(studentembedds[i], embedding_vector)
+            print(i, cosine_similarity)
             if cosine_similarity > previousres : 
                  student = i
                  previousres = cosine_similarity
+    # print(previousres)
+
+    if previousres >= 0.7:
+            return jsonify({'message': student}) if student else jsonify({'message': 'No match found, Register First'})
+    else:
+            return jsonify({'message': 'No match found'})
 
 
-    print(student)
-    
-    return jsonify({'message':student})
 
 # Send a ping to confirm a successful connection
 try:
