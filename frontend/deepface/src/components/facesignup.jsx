@@ -3,7 +3,7 @@ import { FormControl, FormLabel, Input, Box, Flex, Heading, Button, Select } fro
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const api =  "http://localhost:5000";
+const api =  "https://facialrecognitionflask.onrender.com";
 
 function FaceSignUp() {
 

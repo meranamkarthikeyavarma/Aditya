@@ -24,7 +24,8 @@ studentembedds = {}
 for doc in collection.find({}, {'embeddings': 1, 'name': 1, '_id': 0}):
     studentembedds[doc['name']] = doc['embeddings'][0]
 
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://your-react-app.onrender.com"}})
+
 
 
 @app.route('/retrievedata', methods=['POST'])
@@ -105,5 +106,5 @@ except Exception as e:
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Get the port from environment variable or default to 5000
+    port = int(os.environ.get("PORT", 5000))  
     app.run(host='0.0.0.0', port=port, debug=True)
