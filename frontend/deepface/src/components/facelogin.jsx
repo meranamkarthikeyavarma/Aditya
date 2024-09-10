@@ -90,7 +90,7 @@ const CameraFeed = () => {
         sx={{
           position: 'absolute',
           top: '20px',
-          left: '45%',
+          left: '60%',
           transform: 'translateX(-50%)',
           background: 'radial-gradient(circle, #ff6f61, #d85a9b, #6a11cb, #d64f4f)',
           backgroundSize: '400% 400%',
@@ -124,8 +124,12 @@ const CameraFeed = () => {
           Attend
         </Button>
       </Stack>
-
-      {/* <p id="studentname"></p> */}
+      {message && (
+        <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '600px' }}>
+          <AlertIcon />
+          {message}
+        </Alert>
+      )}
     </div>
   );
 };
