@@ -24,10 +24,6 @@ studentembedds = {}
 for doc in collection.find({}, {'embeddings': 1, 'name': 1, '_id': 0}):
     studentembedds[doc['name']] = doc['embeddings'][0]
 
-
-
-
-
 CORS(app)
 
 

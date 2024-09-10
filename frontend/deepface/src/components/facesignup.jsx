@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FormControl, FormLabel, Input, Box, Flex, Heading, Button, Select } from '@chakra-ui/react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const api =  "http://localhost:5000";
 
 function FaceSignUp() {
@@ -10,6 +12,7 @@ function FaceSignUp() {
     const [name, setName] = useState('');
     const [branch, setBranch] = useState('AIDS');
     const [year, setYear] = useState('1');
+    const navigate = useNavigate();
 
     const extractData = async() => {
 
@@ -29,7 +32,11 @@ function FaceSignUp() {
         
        });
        console.log(response.data);
-       document.getElementById('response').innerText = response.data;
+
+       if (response && response.data)
+            document.getElementById('response').innerText = response.data.message
+
+       navigate('/');
     } 
   
 
@@ -75,7 +82,6 @@ function FaceSignUp() {
             <option value='option7'>IT</option>
             <option value='option8'>EEE</option>
             <option value='option9'>MECH</option>
-            <option value = 'seeta'>seeta</option>
 
         </Select>
         </FormControl>
