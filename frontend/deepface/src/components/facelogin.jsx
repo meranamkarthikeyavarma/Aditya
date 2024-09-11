@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Heading, Button, Stack } from '@chakra-ui/react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,7 @@ const api = 'http://localhost:5000';
 const CameraFeed = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [res, setRes] = useState('');
 
   useEffect(() => {
     const video = videoRef.current;
@@ -53,11 +54,8 @@ const CameraFeed = () => {
       });
       console.log('Image sent successfully');
       // document.getElementById('studentname').innerText = response.data.message;
-      const res = response.data.message;
-      <Alert status='success' variant='solid'>
-      <AlertIcon />
-          {res}
-      </Alert>
+      setRes(response.data.message)
+      
     } catch (error) {
       console.error('Error sending image:', error);
     }
@@ -124,10 +122,10 @@ const CameraFeed = () => {
           Attend
         </Button>
       </Stack>
-      {message && (
+      {res && (
         <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '600px' }}>
           <AlertIcon />
-          {message}
+          {res}
         </Alert>
       )}
     </div>
