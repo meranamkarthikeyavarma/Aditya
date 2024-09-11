@@ -96,7 +96,7 @@ const CameraFeed = () => {
         sx={{
           position: 'absolute',
           top: '20px',
-          left: '60%',
+          left: '50%',
           transform: 'translateX(-50%)',
           background: 'radial-gradient(circle, #ff6f61, #d85a9b, #6a11cb, #d64f4f)',
           backgroundSize: '400% 400%',
