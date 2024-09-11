@@ -15,6 +15,7 @@ const CameraFeed = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [res, setRes] = useState('');
+  const [showalert, setShowalert] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,6 +56,13 @@ const CameraFeed = () => {
       console.log('Image sent successfully');
       // document.getElementById('studentname').innerText = response.data.message;
       setRes(response.data.message)
+      setShowalert(true)
+
+      setTimeout(() => {
+          setShowalert(false)
+      }, 3000);
+
+
       
     } catch (error) {
       console.error('Error sending image:', error);
@@ -128,12 +136,15 @@ const CameraFeed = () => {
     right: '20px', 
     width: '600px' 
   }}>
-      {res && (
+    
+      {showalert && (
         <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '600px' }}>
           <AlertIcon />
           {res}
         </Alert>
       )}
+
+      
       </div>
     </div>
   );
