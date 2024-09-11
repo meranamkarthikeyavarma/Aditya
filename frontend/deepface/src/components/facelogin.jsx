@@ -133,12 +133,12 @@ const CameraFeed = () => {
       <div style={{ 
     position: 'absolute', 
     top: '20px', 
-    right: '20px', 
+    right: '15px', 
     width: '600px' 
   }}>
     
       {showalert && (
-        <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '600px' }}>
+        <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '500px' }}>
           <AlertIcon />
           {res}
         </Alert>
