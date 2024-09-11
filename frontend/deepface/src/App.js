@@ -3,7 +3,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import FaceSignUp from './components/facesignup';
 import CameraFeed from './components/facelogin';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './app.css'
+import '/.css'
+// import './app.css';
+
 
 
 
