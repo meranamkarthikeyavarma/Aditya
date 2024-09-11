@@ -1,5 +1,5 @@
 /* src/index.css */
-
+/* 
 body, html {
   margin: 0;
   padding: 0;
@@ -23,4 +23,18 @@ body, html {
   width: 100%;
   height: auto;
   display: block;
+} */
+
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
