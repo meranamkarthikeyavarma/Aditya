@@ -122,12 +122,19 @@ const CameraFeed = () => {
           Attend
         </Button>
       </Stack>
+      <div style={{ 
+    position: 'absolute', 
+    top: '20px', 
+    right: '20px', 
+    width: '600px' 
+  }}>
       {res && (
         <Alert status='success' variant='solid' style={{ marginTop: '20px', width: '600px' }}>
           <AlertIcon />
           {res}
         </Alert>
       )}
+      </div>
     </div>
   );
 };
