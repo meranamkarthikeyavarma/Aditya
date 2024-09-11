@@ -16,7 +16,7 @@
   top: 20px;
   right: 20px;
   width: 600px;
-  transition: opacity 3s ease, transform 3s ease;
+  transition: opacity 6s ease, transform 6s ease;
   opacity: 0;
   transform: translateY(-50px);
 }
